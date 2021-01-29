@@ -3,6 +3,10 @@ package com.trello.qa.fw;
 import com.trello.qa.model.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -51,7 +55,22 @@ public class UserHelper extends  HelperBase {
     }
 
     public void changeAvatar(String path) {
-        //...
-        attachPhoto(By.cssSelector("[id='image-input']"), new File(path));
+        WebElement avatar = wd.findElement(By.cssSelector("[data-test-selector='profile-hover-info']"));
+//[data-test-selector='profile-hover-info'] [class^=Droplist__Trigger]
+        new Actions(wd)
+                .moveToElement(avatar)
+                .moveToElement(avatar.findElement(By.xpath(".//*[@class='Droplist__Trigger-sc-1z05y4v-3 eteVrT']")))
+                .click()
+                //.moveToElement(wd.findElement(By.xpath("//div[@id='uid16']/span[1]"))).click()
+                .perform();
+
+
+      //  click(By.xpath("//div[@id='uid16']/span[1]"));
+        new WebDriverWait(wd, 10)
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'Change profile photo')]"))).click();
+
+
+        attachPhoto(By.cssSelector("#image-input"), new File(path));
+        click(By.xpath("//button//span[contains(., 'Upload')]"));
     }
 }
