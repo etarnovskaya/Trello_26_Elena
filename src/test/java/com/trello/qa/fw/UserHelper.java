@@ -48,16 +48,28 @@ public class UserHelper extends  HelperBase {
 
     public void goToAtlasianAcc() {
         click(By.cssSelector("[href$=manage-profile]"));
-        List<String> tabs = new ArrayList<>(wd.getWindowHandles());
-        wd.switchTo().window(tabs.get(1));
+        switchToWindowHanle(1);
 
 
     }
 
+    public void closeWindow(){
+        //close
+        //get list of handles. size -> (int)
+        //switchto size-2
+
+        wd.close();
+        switchToWindowHanle(0);
+    }
+
+
+
+
     public void changeAvatar(String path) {
         WebElement avatar = wd.findElement(By.cssSelector("[data-test-selector='profile-hover-info']"));
 //[data-test-selector='profile-hover-info'] [class^=Droplist__Trigger]
-        new Actions(wd)
+        Actions actions = new Actions(wd);
+       actions
                 .moveToElement(avatar)
                 .moveToElement(avatar.findElement(By.xpath(".//*[@class='Droplist__Trigger-sc-1z05y4v-3 eteVrT']")))
                 .click()
@@ -69,8 +81,17 @@ public class UserHelper extends  HelperBase {
         new WebDriverWait(wd, 10)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'Change profile photo')]"))).click();
 
-
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         attachPhoto(By.cssSelector("#image-input"), new File(path));
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         click(By.xpath("//button//span[contains(., 'Upload')]"));
     }
 }

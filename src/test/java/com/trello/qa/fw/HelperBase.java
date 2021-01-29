@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HelperBase {
     WebDriver wd;
@@ -62,4 +64,10 @@ public class HelperBase {
     public String getPageUrl(){
         return wd.getCurrentUrl();
     }
+
+    public void switchToWindowHanle(int index) {
+        List<String> tabs = new ArrayList<>(wd.getWindowHandles());
+        wd.switchTo().window(tabs.get(index));
+    }
+
 }
