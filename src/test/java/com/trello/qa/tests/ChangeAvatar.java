@@ -26,7 +26,7 @@ public class ChangeAvatar extends  TestBase{
         app.user().goToProfile();
         app.user().goToAtlasianAcc();
         app.user().changeAvatar("C:\\Users\\Elena\\Documents\\GitHub\\Trello_26_Elena\\src\\test\\resources\\cat1.jpg");
-        
+
         Assert.assertTrue(app.user().isElementPresent(By.xpath("//*[contains(.,'Avatar added')]")));
         app.user().closeWindow();
 

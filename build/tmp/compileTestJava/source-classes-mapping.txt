@@ -1,0 +1,12 @@
+com/trello/qa/tests/TestBase.java
+ com.trello.qa.tests.TestBase
+com/trello/qa/fw/UserHelper.java
+ com.trello.qa.fw.UserHelper
+com/trello/qa/model/User.java
+ com.trello.qa.model.User
+com/trello/qa/fw/HelperBase.java
+ com.trello.qa.fw.HelperBase
+com/trello/qa/tests/LoginTest.java
+ com.trello.qa.tests.LoginTest
+com/trello/qa/fw/ApplicationManager.java
+ com.trello.qa.fw.ApplicationManager
